@@ -82,12 +82,16 @@ class Monsoon(object):
         #ctrl_transfer(bmRequestType, bmRequest, wValue, wIndex)
 
     def amps_from_raw(self,raw):
-        raw = min(raw,1023)
-        result = 8.0*(1.0-(raw/1023.0))
+#        raw = min(raw,1023)
+#        result = 8.0*(1.0-(raw/1023.0))
+        result=15.625*(1.0-raw/65535.0)
+        print("amps_from_raw: raw, result",raw,result)
         return result
 
     def raw_from_amps(self,value):
-        result = ((65535-0x0F00) * (value / 15.625)+0x0F00)
+  #      result = ((65535-0x0F00) * (value / 15.625)+0x0F00)   
+        result = -65535.0 *((value / 15.625)-1.0)
+        print("raw from amps: ",value, result)
         return result
 
     def setVout(self,value):
@@ -97,6 +101,7 @@ class Monsoon(object):
         self.Protocol.sendCommand(op.OpCodes.setPowerupTime,value)
     def setPowerUpCurrentLimit(self, value):
         value = self.raw_from_amps(value)
+        print("power up current raw: ",value)
         self.Protocol.sendCommand(op.OpCodes.SetPowerUpCurrentLimit,value)
     def setRunTimeCurrentLimit(self, value):
         value = self.raw_from_amps(value)

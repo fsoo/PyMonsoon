@@ -1,0 +1,5 @@
+SUBSYSTEM !="usb_device", ACTION !="add", GOTO="monsoon_rules_end"
+SYSFS{idVendor} =="2ab9", SYSFS{idProduct} =="0001", SYMLINK+="monsoon"
+MODE="0666", OWNER="fsoo", GROUP="users"
+LABEL="monsoon_rules_end"
+

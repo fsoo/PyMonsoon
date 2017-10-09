@@ -1,21 +1,24 @@
-import Monsoon.LVPM as LVPM
+import Monsoon.LVPM as HVPM
 import Monsoon.sampleEngine as sampleEngine
 import Monsoon.Operations as op
 
-Mon = LVPM.Monsoon()
+Mon = HVPM.Monsoon()
 Mon.setup_usb()
 
 
-Mon.setVout(4.0)
+Mon.setVout(3.8)
 engine = sampleEngine.SampleEngine(Mon)
+engine.enableChannel(sampleEngine.channels.MainCurrent)
+engine.enableChannel(sampleEngine.channels.MainVoltage)
+
 engine.enableCSVOutput("Main Example.csv")
 engine.ConsoleOutput(True)
 numSamples=50000 #sample for one second
 engine.startSampling(numSamples)
-#Diable Main channels
-engine.disableChannel(sampleEngine.channels.MainCurrent)
-engine.disableChannel(sampleEngine.channels.MainVoltage)
-
+#Disable Main channels
+#engine.disableChannel(sampleEngine.channels.MainCurrent)
+#engine.disableChannel(sampleEngine.channels.MainVoltage)
+exit()
 #Take measurements from the USB Channel
 Mon.setVout(0)
 #Set USB Passthrough mode to 'on,' since it defaults to 'auto' and will turn off when sampling mode begins.

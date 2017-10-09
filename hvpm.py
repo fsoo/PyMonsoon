@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+###!/usr/bin/python2.7
 #
 # Copyright 2017 Google Inc. All Rights Reserved.
 
@@ -48,7 +48,8 @@ def main(unused_argv):
 
   if FLAGS.status:
     print "Serialno : %d\n" % mon.getSerialNumber();
-    mon.fillAllStatusPacket()
+  #  mon.fillAllStatusPacket()
+    mon.fillStatusPacket()
     status = mon.statusPacket
     attrs = vars(status)
     print '\n'.join("%s : %s" % item for item in attrs.items())
