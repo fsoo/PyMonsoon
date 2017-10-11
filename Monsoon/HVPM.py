@@ -108,7 +108,7 @@ class Monsoon(object):
         self.Protocol.sendCommand(op.OpCodes.SetRunCurrentLimit,value)
     def setUSBPassthroughMode(self, USBPassthroughCode):
         self.Protocol.sendCommand(op.OpCodes.setUsbPassthroughMode,USBPassthroughCode)
-    def setVoltageChannel(self, VoltageChannelCode):
+    def setVoltageChannel(self, value):
         self.Protocol.sendCommand(op.OpCodes.setVoltageChannel,value)
 
     def setTemperatureLimit(self,value):
