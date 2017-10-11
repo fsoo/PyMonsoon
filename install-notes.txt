@@ -1,0 +1,4 @@
+For permissions - copy the file 50-Monsoon.rules to /etc/udev/rules.d
+modify the username from 'fsoo' to the username
+run udevadm control --reload-rules to restart
+
