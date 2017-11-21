@@ -344,13 +344,13 @@ class SampleEngine:
                 sampletype = sample[8] & 0x30
                 if(sampletype == ops.SampleType.ZeroCal):
                     self.__processZeroCal(sample)
-                    print("zerocal")
+           #         print("zerocal")
                 elif(sampletype == ops.SampleType.refCal):
                    self.__processRefCal(sample)
-                   print("refcal")
+            #       print("refcal")
                 elif(sampletype == ops.SampleType.Measurement):
                     Samples.append(sample)
-                    print("Measurement")
+             #       print("Measurement")
                     
                 offset += 10
         return Samples

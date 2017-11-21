@@ -41,13 +41,7 @@ class myMonsoon(Thread):
 
         # get calibration calibration
         self.mon.StartSampling(1,maxTime=0xFFFFFFFF)
-        calibrated = False
-        for i in range(1,30000):
-            self.getsample()
-            print(self.engine._SampleEngine__mainCal.zeroCalFine)
-        
-        exit()
-        
+        calibrated = False        
         while not calibrated:
             self.getsample()
             calibrated = self.engine._SampleEngine__isCalibrated()
@@ -63,7 +57,7 @@ class myMonsoon(Thread):
     def getsample(self):
     
         buf = self.mon.BulkRead()
-        print(buf)
+     #   print(buf)
         Sample = self.mon.swizzlePacket(buf)
     #    Sample.append(time.time() - self.engine._SampleEngine__startTime)
         Sample.append(time.time())
@@ -92,7 +86,7 @@ def outputcsv(dict):
     for key in dict.keys():
         if count >0:
             sys.stdout.write(",")   
-        sys.stdout.write(str(dict[key]))
+        sys.stdout.write(str.format("{0:.4f}",dict[key]))
         count=count+1
     sys.stdout.write("\n")
 
